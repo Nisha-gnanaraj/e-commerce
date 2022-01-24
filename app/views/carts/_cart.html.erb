@@ -1,0 +1,30 @@
+<div class="row">
+<% unless cart.line_items.empty? %>
+<h3>Your Cart</h3>
+<table class="table table-bordered">
+<tr>
+	<th scope="col"></th>
+	<th scope="col">Quantity</th>
+	<th scope="col">Name</th>
+	<th scope="col">Price</th>
+</tr>
+	<%= render(cart.line_items) %>
+	<tr>
+		<td colspan="2">Total</td>
+		<td colspan="2" class="total_cell"><%= number_to_currency(cart.total_price)  %></td>
+	</tr>
+</table>
+<div class="co-container d-flex h-100 p-3 mx-auto flex-column">
+<% session[:amount] = cart.total_price %>
+<%= button_to 'Empty Cart', cart, :class => "btn btn-primary", :method => :delete, :confirm => 'Are you sure?' %>
+<p class="link">
+	<%= link_to "Continue Shopping",:controller=>"gallery",:action=>"index" %> | 
+	<% if user_signed_in? %>
+	<%= link_to "Checkout" ,:controller=>"gallery",:action=>"checkout" %>
+	<% else %>
+	<%= link_to "Checkout", new_user_session_path %>
+	<% end %>
+</p>
+<% end %>
+</div>
+</div>

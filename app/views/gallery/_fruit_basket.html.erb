@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="heading_container heading_center ">
+    <h2 class="">
+      Our Fruits
+    </h2>
+    <p class="col-lg-9 px-0">
+      If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything
+    </p>
+  </div>
+  <div class="row">
+    <% @fruits.each do |fruit| %>
+      <div class="item col-md-6 col-lg-4 mx-auto">
+        <div class="box">
+          <div class="img-box">
+          <%= image_tag fruit.product_image, :class=> "img-thumbnail tab" %>
+          </div>
+          <div class="detail-box">
+            <h4>
+            <%= fruit.name %>
+            </h4>
+            <h6 class="price">
+              <span class="new_price">
+              <%= fruit.offer_price %>$
+              </span>
+              <span class="old_price">
+              <%= fruit.price %>$
+              </span>
+            </h6>
+             <%= button_to 'Add to Cart', line_items_path(:store_id => fruit.id), :class=>" btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+      <%end%>
+  </div>
+  <div class="btn-box">
+    <a href="">
+      View More Fruits
+    </a>
+  </div>
+</div>
